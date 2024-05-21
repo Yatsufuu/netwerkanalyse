@@ -1,0 +1,10 @@
+geopandas
+owslib
+ogr
+wget
+pyarrow
+gdal==3.8.4
+pydantic
+pygame
+pyshp
+tqdm
