@@ -274,11 +274,6 @@ for municipality in MUNICIPALITIES:
             _rec_connect_closest_sewerline(
                 pump, sewerlines, pump.x, pump.y, MAX_PUMP_TO_SEWERLINE_DISTANCE
             )
-            # log de info
-            logging.info(
-                f"Pump '{pump.gml_id}' has {len(pump.connected_sewer_lines)} connected sewerlines"
-            )
-
             if len(pump.connected_sewer_lines) > 0:
                 Path(f"{analyse_folder}/debug").mkdir(parents=True, exist_ok=True)
                 sewerline_filename = f"{analyse_folder}/debug/03_pump_{pump.gml_id}.shp"
@@ -381,12 +376,12 @@ for municipality in MUNICIPALITIES:
     gdf_active_pumps.to_file(Path(analyse_folder) / "04F_active_pumps.shp")
 
     gdf_join = gpd.sjoin(
-        gdf_sewerlines, gdf_active_pumps, how="inner"
-    )  # , op="contains"
+        gdf_sewerlines, gdf_active_pumps, how="inner", predicate="contains"
+    )
     gdf_join.to_file(Path(analyse_folder) / "04G_active_areas.shp")
 
     # now find all plots that intersect with these active areas
     gdf_join = gdf_join.drop(["index_right"], axis=1)
-    gdf_result = gpd.sjoin(gdf_plots, gdf_join, how="inner")  # , op="intersects"
+    gdf_result = gpd.sjoin(gdf_plots, gdf_join, how="inner")
 
     gdf_result.to_file(Path(analyse_folder) / "05_plots_with_sewer.shp")
