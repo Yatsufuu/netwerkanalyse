@@ -25,6 +25,9 @@ share/python-wheels/
 .installed.cfg
 *.egg
 MANIFEST
+analyse/
+gdal_package/
+kadastrale*
 
 # PyInstaller
 #  Usually these files are written by a python script from a template
