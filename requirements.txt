@@ -3,7 +3,7 @@ owslib
 ogr
 wget
 pyarrow
-# gdal==3.8.4 INSTAALL FROM https://github.com/cgohlke/geospatial-wheels/releases
+# gdal==3.8.4 INSTALL FROM https://github.com/cgohlke/geospatial-wheels/releases
 pydantic
 pyshp
 tqdm
